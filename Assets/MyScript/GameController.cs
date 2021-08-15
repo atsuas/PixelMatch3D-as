@@ -5,23 +5,29 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject[] blocks;
-    public GameObject[,] fieldBlocks;
+    public GameObject[,] fieldBlocks = new GameObject[5, 10];
+    private int width = 5;
+    private int height = 10;
 
     void Start()
     {
         fieldBlocks = new GameObject[5, 10];
-        BlockArray();
+        CreateBlocks();
     }
 
-    void BlockArray()
+    void CreateBlocks()
     {
-        for (int x = 0; x < 5; x++)
+        for (int i = 0; i < width; i++)
         {
-            for (int y = 0; y < 10; y++)
+            for (int j = 0; j < height; j++)
             {
-                GameObject piece = Instantiate(blocks[Random.Range(0,50)]);
-                piece.transform.position = new Vector3(x, y, 0);
-                fieldBlocks[x, y] = piece;
+                int r = Random.Range(0, 5);
+
+                var block = Instantiate(blocks[r]);
+
+                block.transform.position = new Vector2(i, j);
+
+                fieldBlocks[i, j] = block;
             }
         }
     }

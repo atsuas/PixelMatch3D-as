@@ -2,20 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BlockType
+{
+    DEATH,
+    ALIVE,
+}
+
 public class BlocksController : MonoBehaviour
 {
-    Rigidbody rb;
+    public BlockType type;
+    public Sprite deathSprite;
+    public Sprite aliveSprite;
+
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        SetType(BlockType.ALIVE);
     }
 
-    void Update()
+    void SetType(BlockType blockType)
     {
-        if (Input.GetMouseButtonDown(0))
+        type = blockType;
+        SetSprite(type);
+    }
+
+    void SetSprite(BlockType type)
+    {
+        if (type == BlockType.DEATH)
         {
-            rb.useGravity = true;
+            spriteRenderer.sprite = deathSprite;
+        }
+        else if (type == BlockType.ALIVE)
+        {
+            spriteRenderer.sprite = aliveSprite;
+        }
+    }
+
+    public void OnBlock()
+    {
+        ClearBlock();
+    }
+
+    void ClearBlock()
+    {
+        if (type == BlockType.DEATH)
+        {
+            SetType(BlockType.ALIVE);
+        }
+        else if (type == BlockType.ALIVE)
+        {
+            SetType(BlockType.DEATH);
         }
     }
 }

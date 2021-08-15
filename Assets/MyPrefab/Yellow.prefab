@@ -95,6 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e702dc987bf884dffa4c7946e194f872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
+  deathRb: {fileID: -984040725478986060, guid: 8ed363d09e846487d9e20147df8d19cb, type: 3}
+  aliveRb: {fileID: -984040725478986060}
 --- !u!54 &-984040725478986060
 Rigidbody:
   m_ObjectHideFlags: 0
