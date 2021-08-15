@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class QuadOpen : MonoBehaviour
 {
-    GameObject quad;
     Renderer renderer;
 
     void Start()
     {
         renderer = GetComponent<Renderer>();
-        quad = GetComponent<GameObject>();
     }
 
     void Update()
