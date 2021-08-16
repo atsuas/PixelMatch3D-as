@@ -21,9 +21,8 @@ public class GameController : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                int r = Random.Range(0, 5);
 
-                var block = Instantiate(blocks[r]);
+                var block = Instantiate(blocks[0]);
 
                 block.transform.position = new Vector2(i, j);
 
