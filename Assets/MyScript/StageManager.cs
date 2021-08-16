@@ -16,14 +16,14 @@ public class StageManager : MonoBehaviour
     void LoadStageFromText()
     {
         string[] lines = stageFile.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
-        int columns = 5;
+        int columns = 10;
         int rows = 5;
 
-        blockTable = new BlockType[columns, rows];
-        for (int y = 0; y < rows; y++)
+        blockTable = new BlockType[rows, columns];
+        for (int y = 0; y < columns; y++)
         {
             string[] values = lines[y].Split(new[] { ',' });
-            for (int x = 0; x < columns; x++)
+            for (int x = 0; x < rows; x++)
             {
                 if (values[x] == "0")
                 {
@@ -39,7 +39,7 @@ public class StageManager : MonoBehaviour
 
     void DebugTable()
     {
-        for (int y = 0; y < 5; y++)
+        for (int y = 0; y < 10; y++)
         {
             string debugText = "";
             for (int x = 0; x < 5; x++)
