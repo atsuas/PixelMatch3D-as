@@ -6,6 +6,7 @@ public class BookClose : MonoBehaviour
 {
     Animator animator;
     public GameObject book1;
+    public GameObject stage;
     public float lifeTime = 4f;
     public float destroy = 7f;
 
@@ -27,5 +28,10 @@ public class BookClose : MonoBehaviour
     void Zoom()
     {
         animator.SetTrigger("Zoom");
+    }
+
+    void StageOn()
+    {
+        stage.SetActive(true);
     }
 }

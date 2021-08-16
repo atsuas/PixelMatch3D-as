@@ -7,10 +7,34 @@ public class StageManager : MonoBehaviour
     public TextAsset stageFile;
     BlockType[,] blockTable;
 
+    public BlocksController blockPrefab;
+
     void Start()
     {
         LoadStageFromText();
         DebugTable();
+        CreateStage();
+    }
+
+    void CreateStage()
+    {
+        Vector3 halfSize = default;
+        float blockSize = blockPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
+        halfSize.x = blockSize * (blockTable.GetLength(0) / 2);
+        halfSize.y = blockSize * (blockTable.GetLength(1) / 2);
+
+        for (int y = 0; y < blockTable.GetLength(1); y++)
+        {
+            for (int x = 0; x < blockTable.GetLength(0); x++)
+            {
+                Vector3Int position = new Vector3Int(x, y, 0);
+                BlocksController block = Instantiate(blockPrefab);
+                block.SetType(blockTable[x,y]);
+                Vector3 setPosition = (Vector3)position * blockSize - halfSize;
+                setPosition.y *= -1;
+                block.transform.position = setPosition;
+            }
+        }
     }
 
     void LoadStageFromText()

@@ -16,13 +16,12 @@ public class BlocksController : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        SetType(BlockType.ALIVE);
     }
 
-    void SetType(BlockType blockType)
+    public void SetType(BlockType blockType)
     {
         type = blockType;
         SetSprite(type);
