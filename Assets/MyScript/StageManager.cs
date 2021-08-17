@@ -7,7 +7,7 @@ public class StageManager : MonoBehaviour
     public TextAsset stageFile1;
     public TextAsset stageFile2;
     BlockType[,] blockTable;
-    //BlocksController[,] blockTableobj;
+    BlocksController[,] blockTableobj;
 
     public BlocksController blockPrefab;
 
@@ -31,10 +31,11 @@ public class StageManager : MonoBehaviour
             {
                 Vector3Int position = new Vector3Int(x, y, 0);
                 BlocksController block = Instantiate(blockPrefab);
-                block.SetType(blockTable[x,y]);
+                block.Init(blockTable[x,y], position, this);
                 Vector3 setPosition = (Vector3)position * blockSize - halfSize;
                 setPosition.y *= -1;
                 block.transform.position = setPosition;
+                blockTableobj[x, y] = block;
             }
         }
     }
@@ -46,6 +47,7 @@ public class StageManager : MonoBehaviour
         int rows = 5;
 
         blockTable = new BlockType[rows, columns];
+        blockTableobj = new BlocksController[rows, columns];
         for (int y = 0; y < columns; y++)
         {
             string[] values = lines[y].Split(new[] { ',' });
@@ -63,13 +65,11 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    //public void ClickedBlock(Vector3Int center)
-    //{
-    //    if (IsClear())
-    //    {
-    //        Debug.Log("Clear");
-    //    }
-    //}
+    public void ClickedBlock(Vector3Int center)
+    {
+        Debug.Log("ClickedBlock");
+        ClearBlocks(center);
+    }
 
     //bool IsClear()
     //{
@@ -85,6 +85,11 @@ public class StageManager : MonoBehaviour
     //    }
     //    return true;
     //}
+
+    void ClearBlocks(Vector3Int center)
+    {
+
+    }
 
     void DebugTable()
     {

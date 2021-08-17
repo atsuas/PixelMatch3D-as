@@ -16,22 +16,22 @@ public class BlocksController : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    //StageManager stageManager;
-    //Vector3Int intPosition;
+    StageManager stageManager;
+    Vector3Int intPosition;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    //public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
-    //{
-    //    intPosition = position;
-    //    this.stageManager = stageManager;
-    //    SetType(blockType);
-    //}
+    public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
+    {
+        intPosition = position;
+        this.stageManager = stageManager;
+        SetType(type);
+    }
 
-    public void SetType(BlockType blockType)
+    void SetType(BlockType blockType)
     {
         type = blockType;
         SetSprite(type);
@@ -53,10 +53,10 @@ public class BlocksController : MonoBehaviour
     public void OnBlock()
     {
         ClearBlock();
-        //stageManager.ClickedBlock(intPosition);
+        stageManager.ClickedBlock(intPosition);
     }
 
-    void ClearBlock()
+    public void ClearBlock()
     {
         if (type == BlockType.DEATH)
         {
