@@ -16,9 +16,19 @@ public class BlocksController : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    StageManager stageManager;
+    Vector3Int intPosition;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
+    {
+        intPosition = position;
+        this.stageManager = stageManager;
+        SetType(blockType);
     }
 
     public void SetType(BlockType blockType)
@@ -39,9 +49,11 @@ public class BlocksController : MonoBehaviour
         }
     }
 
+    //クリックしたら実行
     public void OnBlock()
     {
         ClearBlock();
+        stageManager.ClickedBlock(intPosition);
     }
 
     void ClearBlock()
@@ -53,6 +65,7 @@ public class BlocksController : MonoBehaviour
         else if (type == BlockType.ALIVE)
         {
             SetType(BlockType.DEATH);
+            //Destroy(this.gameObject); //ブロックを消す
         }
     }
 }
