@@ -7,6 +7,7 @@ public class BookClose : MonoBehaviour
     Animator animator;
     public GameObject book1;
     public GameObject stage;
+    public GameObject button;
     public float lifeTime = 4f;
     public float destroy = 7f;
 
@@ -33,5 +34,10 @@ public class BookClose : MonoBehaviour
     void StageOn()
     {
         stage.SetActive(true);
+    }
+
+    void ButtonOn()
+    {
+        button.SetActive(true);
     }
 }

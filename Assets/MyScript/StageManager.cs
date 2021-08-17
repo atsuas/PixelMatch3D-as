@@ -63,28 +63,28 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public void ClickedBlock(Vector3Int center)
-    {
-        if (IsClear())
-        {
-            Debug.Log("Clear");
-        }
-    }
+    //public void ClickedBlock(Vector3Int center)
+    //{
+    //    if (IsClear())
+    //    {
+    //        Debug.Log("Clear");
+    //    }
+    //}
 
-    bool IsClear()
-    {
-        for (int y = 0; y < blockTable.GetLength(1); y++)
-        {
-            for (int x = 0; x < blockTable.GetLength(0); x++)
-            {
-                if (stageFile2)
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    //bool IsClear()
+    //{
+    //    for (int y = 0; y < blockTable.GetLength(1); y++)
+    //    {
+    //        for (int x = 0; x < blockTable.GetLength(0); x++)
+    //        {
+    //            if (stageFile2)
+    //            {
+    //                return false;
+    //            }
+    //        }
+    //    }
+    //    return true;
+    //}
 
     void DebugTable()
     {
