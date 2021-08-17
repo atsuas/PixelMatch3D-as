@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public TextAsset stageFile;
+    public TextAsset stageFile1;
+    public TextAsset stageFile2;
     BlockType[,] blockTable;
-    BlocksController[,] blockTableobj;
+    //BlocksController[,] blockTableobj;
 
     public BlocksController blockPrefab;
 
@@ -40,7 +41,7 @@ public class StageManager : MonoBehaviour
 
     void LoadStageFromText()
     {
-        string[] lines = stageFile.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        string[] lines = stageFile1.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
         int columns = 10;
         int rows = 5;
 
@@ -76,7 +77,7 @@ public class StageManager : MonoBehaviour
         {
             for (int x = 0; x < blockTable.GetLength(0); x++)
             {
-                if (blockTable[x,y] == BlockType.ALIVE)
+                if (stageFile2)
                 {
                     return false;
                 }
