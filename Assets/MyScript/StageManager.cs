@@ -71,21 +71,6 @@ public class StageManager : MonoBehaviour
         ClearBlocks(center);
     }
 
-    //bool IsClear()
-    //{
-    //    for (int y = 0; y < blockTable.GetLength(1); y++)
-    //    {
-    //        for (int x = 0; x < blockTable.GetLength(0); x++)
-    //        {
-    //            if (stageFile2)
-    //            {
-    //                return false;
-    //            }
-    //        }
-    //    }
-    //    return true;
-    //}
-
     void ClearBlocks(Vector3Int center)
     {
 
