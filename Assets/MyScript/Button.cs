@@ -6,6 +6,7 @@ public class Button : MonoBehaviour
 {
     private int[,] startArrays;
     private int[,] finishArrays;
+    public GameObject blockPrefab;
 
 void Start()
     {
@@ -49,5 +50,7 @@ void Start()
         {
             Debug.Log(finishArray);
         }
+
+        
     }
 }

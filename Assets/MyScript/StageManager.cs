@@ -16,6 +16,35 @@ public class StageManager : MonoBehaviour
         LoadStageFromText();
         DebugTable();
         CreateStage();
+
+        // ステージのデータ
+        var blockTable = new BlockType[,] {
+            { BlockType.DEATH, BlockType.DEATH, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+            { BlockType.DEATH, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.ALIVE},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.ALIVE},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.DEATH},
+            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.DEATH, BlockType.DEATH},
+            { BlockType.DEATH, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+            { BlockType.DEATH, BlockType.DEATH, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
+        };
+
+        // 操作されるゲームオブジェクトが持つデータ
+        var BlocksController = new BlocksController[,] {
+            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH } },
+            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH } },
+            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
+        };
+
     }
 
     void CreateStage()
@@ -69,12 +98,27 @@ public class StageManager : MonoBehaviour
     public void ClickedBlock(Vector3Int center)
     {
         Debug.Log("ClickedBlock");
-        ClearBlocks(center);
     }
 
-    void ClearBlocks(Vector3Int center)
+    public void IsClear()
     {
+            bool isSuccess = true;
+            for (int y = 0; y < blockTable.GetLength(1); y++)
+            {
+                for (int x = 0; x < blockTable.GetLength(0); x++)
+                {
+                    if (blockTableobj[x, y].type != blockTable[x, y]) isSuccess = false;
+                }
+            }
 
+            if (isSuccess)
+            {
+                Debug.Log("正解");
+            }
+            else
+            {
+                Debug.Log("不正解");
+            }
     }
 
     void DebugTable()
