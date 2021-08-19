@@ -4,38 +4,50 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public GameObject blockPrefab;
+    private int[,] startArrays;
+    private int[,] finishArrays;
 
-    void Start()
+void Start()
     {
-        int[][] blockImage =
+        startArrays = new int[,]
         {
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1},
-            new int[] {1,1,1,1,1}
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,1,1,1}
         };
 
-        print(blockImage.Length);
-        print(blockImage[0].Length);
-
-        for (int i = 0; i < blockImage.Length; i++)
+        finishArrays = new int[,]
         {
-            for (int j = 0; j < blockImage[i].Length; j++)
-            {
-                print(blockImage[i][j]);
+            {0,0,1,1,1},
+            {0,0,1,1,1},
+            {1,1,1,1,1},
+            {1,1,0,0,1},
+            {1,1,0,0,1},
+            {1,1,1,1,1},
+            {1,1,0,0,0},
+            {1,1,1,0,0},
+            {0,1,1,1,1},
+            {0,0,1,1,1}
+        };
 
-                if (blockImage[i][j] == 1)
-                {
-                    Instantiate(blockPrefab, new Vector3(i, 0.5f, j), Quaternion.identity);
-                }
-            }
+        //配列の要素を個別に出力
+        Debug.Log(startArrays[0, 0] + ":" + startArrays[0, 2]);
+        Debug.Log(finishArrays[0, 0] + ":" + finishArrays[0, 3]);
+        //多次元配列の要素を全出力
+        foreach (var startArray in startArrays)
+        {
+            Debug.Log(startArray);
+        }
+        foreach (var finishArray in finishArrays)
+        {
+            Debug.Log(finishArray);
         }
     }
 }
