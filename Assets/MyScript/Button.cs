@@ -4,33 +4,41 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public string[] textMessage;
-    public string[,] textWords;
-
-    private int rowLength;
-    private int columnLength;
+    public GameObject blockPrefab;
 
     void Start()
     {
-        TextAsset textAsset = new TextAsset();
-        textAsset = Resources.Load("Test", typeof(TextAsset)) as TextAsset;
-        string TextLines = textAsset.text;
-
-        textMessage = TextLines.Split('\n');
-
-        columnLength = textMessage[0].Split('\t').Length;
-        rowLength = textMessage.Length;
-
-        textWords = new string[rowLength, columnLength];
-
-        for (int i = 0; i < rowLength; i++)
+        int[][] blockImage =
         {
-            string[] tempWords = textMessage[i].Split('\t');
+            new int[] {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+            new int[] {0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+            new int[] {0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+            new int[] {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+            new int[] {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1},
+            new int[] {1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1},
+            new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+            new int[] {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+            new int[] {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+            new int[] {1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+            new int[] {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+            new int[] {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1},
+            new int[] {1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1},
+            new int[] {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0}
+        };
 
-            for (int n = 0; n < columnLength; n++)
+        print(blockImage.Length);
+        print(blockImage[0].Length);
+
+        for (int i = 0; i < blockImage.Length; i++)
+        {
+            for (int j = 0; j < blockImage[i].Length; j++)
             {
-                textWords[i, n] = tempWords[n];
-                Debug.Log(textWords[i, n]);
+                print(blockImage[i][j]);
+
+                if (blockImage[i][j] == 1)
+                {
+                    Instantiate(blockPrefab, new Vector3(i, 0.5f, j), Quaternion.identity);
+                }
             }
         }
     }
