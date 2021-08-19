@@ -7,7 +7,10 @@ public class StageManager : MonoBehaviour
     public TextAsset stageFile1;
     public TextAsset stageFile2;
     BlockType[,] blockTable;
+    BlockType[,] blockTable2;
+
     BlocksController[,] blockTableobj;
+    BlocksController[,] blockTableobj2;
 
     public BlocksController blockPrefab;
 
@@ -16,35 +19,7 @@ public class StageManager : MonoBehaviour
         LoadStageFromText();
         DebugTable();
         CreateStage();
-
-        // ステージのデータ
-        var blockTable = new BlockType[,] {
-            { BlockType.DEATH, BlockType.DEATH, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-            { BlockType.DEATH, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.ALIVE},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.ALIVE},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.DEATH , BlockType.DEATH, BlockType.DEATH},
-            { BlockType.ALIVE, BlockType.ALIVE, BlockType.ALIVE , BlockType.DEATH, BlockType.DEATH},
-            { BlockType.DEATH, BlockType.ALIVE, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-            { BlockType.DEATH, BlockType.DEATH, BlockType.ALIVE , BlockType.ALIVE, BlockType.ALIVE},
-        };
-
-        // 操作されるゲームオブジェクトが持つデータ
-        var BlocksController = new BlocksController[,] {
-            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH } },
-            { new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH } },
-            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-            { new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.DEATH }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE }, new BlocksController {type = BlockType.ALIVE } },
-        };
-
+        //ClearStageText();
     }
 
     void CreateStage()
@@ -70,7 +45,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    void LoadStageFromText()
+    public void LoadStageFromText()
     {
         string[] lines = stageFile1.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
         int columns = 10;
@@ -95,6 +70,31 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    public void ClearStageText()
+    {
+        string[] lines = stageFile2.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        int columns = 10;
+        int rows = 5;
+
+        blockTable2 = new BlockType[rows, columns];
+        blockTableobj2 = new BlocksController[rows, columns];
+        for (int y = 0; y < columns; y++)
+        {
+            string[] values = lines[y].Split(new[] { ',' });
+            for (int x = 0; x < rows; x++)
+            {
+                if (values[x] == "0")
+                {
+                    blockTable2[x, y] = BlockType.DEATH;
+                }
+                if (values[x] == "1")
+                {
+                    blockTable2[x, y] = BlockType.ALIVE;
+                }
+            }
+        }
+    }
+
     public void ClickedBlock(Vector3Int center)
     {
         Debug.Log("ClickedBlock");
@@ -102,23 +102,24 @@ public class StageManager : MonoBehaviour
 
     public void IsClear()
     {
-            bool isSuccess = true;
-            for (int y = 0; y < blockTable.GetLength(1); y++)
+        ClearStageText();
+        bool isSuccess = true;
+        for (int y = 0; y < blockTable2.GetLength(1); y++)
+        {
+            for (int x = 0; x < blockTable2.GetLength(0); x++)
             {
-                for (int x = 0; x < blockTable.GetLength(0); x++)
-                {
-                    if (blockTableobj[x, y].type != blockTable[x, y]) isSuccess = false;
-                }
+                if (blockTableobj[x,y].type != blockTable2[x,y]) isSuccess = false;
             }
+        }
 
-            if (isSuccess)
-            {
-                Debug.Log("正解");
-            }
-            else
-            {
-                Debug.Log("不正解");
-            }
+        if (isSuccess)
+        {
+            Debug.Log("正解");
+        }
+        else
+        {
+            Debug.Log("不正解");
+        }
     }
 
     void DebugTable()
