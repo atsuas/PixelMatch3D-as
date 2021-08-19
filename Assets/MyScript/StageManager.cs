@@ -33,7 +33,8 @@ public class StageManager : MonoBehaviour
                 BlocksController block = Instantiate(blockPrefab);
                 block.Init(blockTable[x,y], position, this);
                 Vector3 setPosition = (Vector3)position * blockSize - halfSize;
-                setPosition.y *= -1;
+                setPosition.y *= (float)-1.04;
+                setPosition.x *= (float)-1.04;
                 block.transform.position = setPosition;
                 blockTableobj[x, y] = block;
             }
