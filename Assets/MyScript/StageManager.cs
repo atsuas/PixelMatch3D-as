@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    Animator openAnimator;
+    public Animator openAnimator;
+    public Animator openStopAnimator;
+    public GameObject clearImage;
+    public GameObject stopImage;
     public TextAsset stageFile1;
     public TextAsset stageFile2;
     BlockType[,] blockTable;
@@ -120,8 +123,12 @@ public class StageManager : MonoBehaviour
             {
                 Destroy(clone);
             }
-            //clearStage.SetActive(false);
+            clearImage.SetActive(true);
+            stopImage.SetActive(true);
+            openAnimator.SetTrigger("OpenAni");
+            openStopAnimator.SetTrigger("OpenAni2");
             Debug.Log("正解");
+            
         }
         else
         {
