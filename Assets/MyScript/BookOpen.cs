@@ -5,7 +5,10 @@ using UnityEngine;
 public class BookOpen : MonoBehaviour
 {
     Animator animator;
-    
+    public GameObject exPixel;
+    public GameObject clPixel;
+    public float lifeTime = 1f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -16,6 +19,13 @@ public class BookOpen : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("OpenPix");
+            Destroy(exPixel, lifeTime);
+            Invoke("ClearPixelMatch", 1.4f);
         }
+    }
+
+    public void ClearPixelMatch()
+    {
+        clPixel.SetActive(true);
     }
 }
