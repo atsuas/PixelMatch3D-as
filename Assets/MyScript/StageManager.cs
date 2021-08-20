@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    Animator openAnimator;
     public TextAsset stageFile1;
     public TextAsset stageFile2;
     BlockType[,] blockTable;
@@ -19,7 +20,7 @@ public class StageManager : MonoBehaviour
         LoadStageFromText();
         DebugTable();
         CreateStage();
-        //ClearStageText();
+        openAnimator = GetComponent<Animator>();
     }
 
     void CreateStage()
@@ -114,10 +115,18 @@ public class StageManager : MonoBehaviour
 
         if (isSuccess)
         {
+            var clones = GameObject.FindGameObjectsWithTag("Yellow");
+            foreach (var clone in clones)
+            {
+                Destroy(clone);
+            }
+            //clearStage.SetActive(false);
             Debug.Log("正解");
         }
         else
         {
+            //CreateStage();
+            //openAnimator.SetTrigger("Open");
             Debug.Log("不正解");
         }
     }
