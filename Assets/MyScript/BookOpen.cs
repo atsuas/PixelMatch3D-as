@@ -5,6 +5,7 @@ using UnityEngine;
 public class BookOpen : MonoBehaviour
 {
     Animator animator;
+    public Animator matchAnimator;
     public GameObject exPixel;
     public GameObject clPixel;
     public float lifeTime = 1f;
@@ -27,5 +28,6 @@ public class BookOpen : MonoBehaviour
     public void ClearPixelMatch()
     {
         clPixel.SetActive(true);
+        matchAnimator.SetTrigger("Match");
     }
 }
