@@ -864,7 +864,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 976949097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0d0c352540342ca9b05e9e08c3f325, type: 3}
+  m_Script: {fileID: 11500000, guid: d7cc143b33ef7461b8665f911bf3e9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openAnimator: {fileID: 1065334521}
@@ -872,9 +872,9 @@ MonoBehaviour:
   clearImage: {fileID: 1065334519}
   stopImage: {fileID: 1911281430}
   okButton: {fileID: 1212895632}
-  stageFile1: {fileID: 4900000, guid: 2c7ce5cffa02c4fbaaf4d7fd1004cc83, type: 3}
-  stageFile2: {fileID: 4900000, guid: a5c72b078e1944a97a469fb45436293d, type: 3}
-  blockPrefab: {fileID: 8875505905929043986, guid: 0fddde8eba7ce42a7990b7cd75a422e3,
+  stageFile1: {fileID: 4900000, guid: 037ed11eb85044aceaa6620e978be26f, type: 3}
+  stageFile2: {fileID: 4900000, guid: dab0013762a074bddb358570a6888ca7, type: 3}
+  blockPrefab: {fileID: 7216523053849412650, guid: c386013ebd097431fac22bd668c4be23,
     type: 3}
 --- !u!95 &976949099
 Animator:
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 976949098}
+      - m_Target: {fileID: 0}
         m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:

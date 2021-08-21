@@ -17,10 +17,10 @@ public class Level3StageManager : MonoBehaviour
     BlockType[,] blockTable;
     BlockType[,] blockTable2;
 
-    Level2BlocksController[,] blockTableobj;
-    Level2BlocksController[,] blockTableobj2;
+    Level3BlocksController[,] blockTableobj;
+    Level3BlocksController[,] blockTableobj2;
 
-    public Level2BlocksController blockPrefab;
+    public Level3BlocksController blockPrefab;
 
     void Start()
     {
@@ -42,7 +42,7 @@ public class Level3StageManager : MonoBehaviour
             for (int x = 0; x < blockTable.GetLength(0); x++)
             {
                 Vector3Int position = new Vector3Int(x, y, 0);
-                Level2BlocksController block = Instantiate(blockPrefab);
+                Level3BlocksController block = Instantiate(blockPrefab);
                 
                 Vector3 setPosition = (Vector3)position * blockSize - halfSize;
                 setPosition.y *= (float)-1.04;
@@ -60,7 +60,7 @@ public class Level3StageManager : MonoBehaviour
         int rows = 4;
 
         blockTable = new BlockType[rows, columns];
-        blockTableobj = new Level2BlocksController[rows, columns];
+        blockTableobj = new Level3BlocksController[rows, columns];
         for (int y = 0; y < columns; y++)
         {
             string[] values = lines[y].Split(new[] { ',' });
@@ -85,7 +85,7 @@ public class Level3StageManager : MonoBehaviour
         int rows = 4;
 
         blockTable2 = new BlockType[rows, columns];
-        blockTableobj2 = new Level2BlocksController[rows, columns];
+        blockTableobj2 = new Level3BlocksController[rows, columns];
         for (int y = 0; y < columns; y++)
         {
             string[] values = lines[y].Split(new[] { ',' });
@@ -122,7 +122,7 @@ public class Level3StageManager : MonoBehaviour
 
         if (isSuccess)
         {
-            var clones = GameObject.FindGameObjectsWithTag("Pink");
+            var clones = GameObject.FindGameObjectsWithTag("Blue");
             foreach (var clone in clones)
             {
                 Destroy(clone);
