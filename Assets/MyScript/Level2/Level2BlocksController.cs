@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockType
-{
-    DEATH,
-    ALIVE,
-}
-
-public class BlocksController : MonoBehaviour
+public class Level2BlocksController : MonoBehaviour
 {
     public BlockType type;
     public Sprite deathSprite;
@@ -16,20 +10,20 @@ public class BlocksController : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    StageManager stageManager;
-    Vector3Int intPosition;
+    //Level2StageManager stageManager;
+    //Vector3Int intPosition;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
-    {
-        intPosition = position;
-        this.stageManager = stageManager;
-        SetType(type);
-    }
+    //public void Init(BlockType blockType, Vector3Int position, Level2StageManager stageManager)
+    //{
+    //    intPosition = position;
+    //    this.stageManager = stageManager;
+    //    SetType(type);
+    //}
 
     void SetType(BlockType blockType)
     {
@@ -53,7 +47,7 @@ public class BlocksController : MonoBehaviour
     public void OnBlock()
     {
         ClearBlock();
-        stageManager.ClickedBlock(intPosition);
+        //stageManager.ClickedBlock(intPosition);
     }
 
     public void ClearBlock()

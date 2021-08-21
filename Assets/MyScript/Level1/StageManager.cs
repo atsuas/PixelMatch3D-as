@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
     public Animator openAnimator;
     public Animator openStopAnimator;
+
     public GameObject clearImage;
     public GameObject stopImage;
+    public GameObject okButton;
+
     public TextAsset stageFile1;
     public TextAsset stageFile2;
     BlockType[,] blockTable;
@@ -127,6 +131,7 @@ public class StageManager : MonoBehaviour
             stopImage.SetActive(true);
             openAnimator.SetTrigger("OpenAni");
             openStopAnimator.SetTrigger("OpenAni2");
+            Destroy(okButton.gameObject);
             Debug.Log("正解");
             
         }
@@ -136,6 +141,11 @@ public class StageManager : MonoBehaviour
             //openAnimator.SetTrigger("Open");
             Debug.Log("不正解");
         }
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene("Level2");
     }
 
     void DebugTable()
