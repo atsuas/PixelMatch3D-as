@@ -11,6 +11,7 @@ public class Level2StageManager : MonoBehaviour
     public GameObject clearImage;
     public GameObject stopImage;
     public GameObject okButton;
+    public GameObject reloadButton;
 
     public TextAsset stageFile1;
     public TextAsset stageFile2;
@@ -51,6 +52,7 @@ public class Level2StageManager : MonoBehaviour
                 blockTableobj[x, y] = block;
             }
         }
+        reloadButton.SetActive(true);
     }
 
     public void LoadStageFromText()
@@ -141,6 +143,11 @@ public class Level2StageManager : MonoBehaviour
             //openAnimator.SetTrigger("Open");
             Debug.Log("不正解");
         }
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene("Level2");
     }
 
     public void NextScene()

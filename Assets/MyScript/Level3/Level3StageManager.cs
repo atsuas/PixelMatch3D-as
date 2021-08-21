@@ -11,6 +11,7 @@ public class Level3StageManager : MonoBehaviour
     public GameObject clearImage;
     public GameObject stopImage;
     public GameObject okButton;
+    public GameObject reloadButton;
 
     public TextAsset stageFile1;
     public TextAsset stageFile2;
@@ -51,6 +52,7 @@ public class Level3StageManager : MonoBehaviour
                 blockTableobj[x, y] = block;
             }
         }
+        reloadButton.SetActive(true);
     }
 
     public void LoadStageFromText()
@@ -143,9 +145,14 @@ public class Level3StageManager : MonoBehaviour
         }
     }
 
-    public void NextScene()
+    public void Reload()
     {
         SceneManager.LoadScene("Level3");
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene("Level1");
     }
 
     void DebugTable()
