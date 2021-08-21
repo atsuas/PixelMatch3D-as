@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level2StageManager : MonoBehaviour
+public class Level3StageManager : MonoBehaviour
 {
     public Animator openAnimator;
     public Animator openStopAnimator;
