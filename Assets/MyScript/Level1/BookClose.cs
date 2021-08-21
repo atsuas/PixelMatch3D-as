@@ -8,6 +8,7 @@ public class BookClose : MonoBehaviour
     public GameObject book1;
     public GameObject stage;
     public GameObject button;
+    public GameObject handSprite;
     public float lifeTime = 4f;
     public float destroy = 7f;
 
@@ -23,6 +24,7 @@ public class BookClose : MonoBehaviour
             animator.SetTrigger("Open");
             Destroy(book1.gameObject, lifeTime);
             Destroy(this.gameObject, destroy);
+            handSprite.SetActive(false);
         }
     }
 

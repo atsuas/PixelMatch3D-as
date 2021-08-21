@@ -13,6 +13,7 @@ public class BookOpen : MonoBehaviour
     public GameObject exPixel;
     public GameObject clPixel;
     public GameObject nextButton;
+    public GameObject handOpenMove;
 
     public GameObject starSet;
     public GameObject starGold;
@@ -31,6 +32,7 @@ public class BookOpen : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("OpenPix");
+            handOpenMove.SetActive(false);
             Destroy(exPixel, lifeTime);
             Invoke("ClearPixelMatch", 1.4f);
             Invoke("StarSet", 3f);

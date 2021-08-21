@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
     public GameObject stopImage;
     public GameObject okButton;
     public GameObject reloadButton;
+    public GameObject handOpenSprite;
 
     public TextAsset stageFile1;
     public TextAsset stageFile2;
@@ -134,6 +135,7 @@ public class StageManager : MonoBehaviour
             openAnimator.SetTrigger("OpenAni");
             openStopAnimator.SetTrigger("OpenAni2");
             Destroy(okButton.gameObject);
+            handOpenSprite.SetActive(true);
             Debug.Log("正解");
             
         }
