@@ -135,7 +135,7 @@ public class StageManager : MonoBehaviour
             openAnimator.SetTrigger("OpenAni");
             openStopAnimator.SetTrigger("OpenAni2");
             Destroy(okButton.gameObject);
-            handOpenSprite.SetActive(true);
+            Invoke("HandOpenMove", 1.2f);
             Debug.Log("正解");
             
         }
@@ -145,6 +145,11 @@ public class StageManager : MonoBehaviour
             //openAnimator.SetTrigger("Open");
             Debug.Log("不正解");
         }
+    }
+
+    public void HandOpenMove()
+    {
+        handOpenSprite.SetActive(true);
     }
 
     public void Reload()
