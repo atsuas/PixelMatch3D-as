@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class BookCloseCheck : MonoBehaviour
 {
+    public GameObject door;
+
+    private void Update()
+    {
+        
+    }
+
     void OnMouseDrag()
     {
         //Cubeの位置をワールド座標からスクリーン座標に変換して、objectPointに格納
@@ -14,14 +21,18 @@ public class BookCloseCheck : MonoBehaviour
         Vector3 pointScreen
             = new Vector3(Input.mousePosition.x,
                           Input.mousePosition.y,
-                          0);
+                          objectPoint.z);
+
+
 
         //Cubeの現在位置を、スクリーン座標からワールド座標に変換して、pointWorldに格納
         Vector3 pointWorld = Camera.main.ScreenToWorldPoint(pointScreen);
-        pointWorld.y = transform.position.y;
+        pointWorld.z = transform.position.z;
 
         //Cubeの位置を、pointWorldにする
         transform.position = pointWorld;
+
+        
     }
 
 }
