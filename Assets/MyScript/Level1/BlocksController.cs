@@ -69,4 +69,16 @@ public class BlocksController : MonoBehaviour
             Destroy(this.gameObject); //ブロックを消す
         }
     }
+
+    void OnEnable()
+    {
+        StartCoroutine(ParticleWorking());
+    }
+
+    IEnumerator ParticleWorking()
+    {
+        var particle = GetComponent<ParticleSystem>();
+
+        yield return new WaitWhile(() => particle.IsAlive(true));
+    }
 }
