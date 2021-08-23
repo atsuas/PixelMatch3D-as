@@ -1,76 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BookCloseExample : MonoBehaviour
 {
-    Vector2 pos;         // クリック時のマウス位置
-    Quaternion rotation; // クリックしたときのターゲットの角度
+    public new HingeJoint hingeJoint;
 
-    Vector2 vecA;        // ターゲットの中心からposへのベクトル
-    Vector2 vecB;        // ターゲットの中心から現マウス位置へのベクトル
 
-    float angle;         // vecAとvecBが成す角度
-    Vector3 AxB;         // vecAとvecBの外積
-
-    bool Drag;           //ドラッグ中のフラグ
-
+    void Start()
+    {
+        hingeJoint = GetComponent<HingeJoint>();
+    }
 
     void Update()
     {
-        // マウスのクリック状態からメソッドを選択
-        if (Drag)
+        //ドラッグしている間
+        if (Input.GetMouseButton(0))
         {
-            Rotate();
+            OnRotate(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+
+            if (hingeJoint.angle >= 90f)
+            {
+                Debug.Log("90度超えたよ");
+            }
         }
-        else
-        {
-            SetPos();
-        }
+        
     }
 
-    //マウスをクリックした時の処理
-    void SetPos()
-    {
-        //クリック時のマウスの初期位置とターゲットの現角度を取得
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // マウス位置をワールド座標で取得
-            rotation = this.transform.rotation;                        // ターゲットの現角度を取得
-            Drag = true;                                               // クリックフラグをONにする
-        }
-    }
+    // 単純化のために、スピード調整用係数はVector2からfloatに変更
+    [SerializeField]
+    float RotationSpeed;
 
-    //ドラッグ中かを判断して処理を行う
-    void Rotate()
+    //deltaはドラッグの方向を取得
+    void OnRotate(Vector2 delta)
     {
-        //ドラッグが解除されたらフラグをOFFにしてReturn
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        // 回転量はドラッグ方向ベクトルの長さに比例する
+        float deltaAngle = delta.magnitude * RotationSpeed;
+
+        // 回転量がほぼ0なら、回転軸を求められないので何もしない
+        if (Mathf.Approximately(deltaAngle, 0.0f))
         {
-            Drag = false;
             return;
         }
 
-        //マウス初期位置のベクトルを求める
-        vecA = pos - (Vector2)this.transform.position;
+        // ドラッグ方向をワールド座標系に直す
+        // 横ドラッグならカメラのright方向、縦ドラッグならup方向ということなので
+        // deltaのx、yをright、upに掛けて、2つを合成すればいいはず...
+        Transform cameraTransform = Camera.main.transform;
+        Vector3 deltaWorld = cameraTransform.right * delta.x + cameraTransform.up * delta.y * 0;
 
-        //現マウス位置のベクトルを求める
-        vecB = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+        // 回転軸はドラッグ方向とカメラforwardの外積の向き
+        Vector3 axisWorld = Vector3.Cross(deltaWorld, cameraTransform.forward).normalized;
 
-        // Vector2にしているのはz座標が悪さをしないようにするため
-
-        //マウスの初期位置と現マウス位置から角度と外積を求める
-        angle = Vector2.Angle(vecA, vecB);  //角度を計算
-        AxB = Vector3.Cross(vecA, vecB);    //外積を計算
-
-        // 外積の z 成分の正負で回転方向を決める
-        if (AxB.z > 0)
-        {
-            this.transform.localRotation = rotation * Quaternion.Euler(0, 0, angle); // 初期値との掛け算で相対的に回転させる
-        }
-        else
-        {
-            this.transform.localRotation = rotation * Quaternion.Euler(0, 0, -angle); // 初期値との掛け算で相対的に回転させる
-        }
+        // Rotateで回転する
+        // 回転軸はワールド座標系に基づくので、回転もワールド座標系を使う
+        transform.Rotate(axisWorld, deltaAngle, Space.World);
     }
 }
