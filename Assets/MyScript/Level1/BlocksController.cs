@@ -15,6 +15,8 @@ public class BlocksController : MonoBehaviour
     public Sprite deathSprite;
     public Sprite aliveSprite;
 
+    Rigidbody2D rb;
+
     SpriteRenderer spriteRenderer;
 
     StageManager stageManager;
@@ -23,6 +25,7 @@ public class BlocksController : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
@@ -66,19 +69,15 @@ public class BlocksController : MonoBehaviour
         else if (type == BlockType.ALIVE)
         {
             SetType(BlockType.DEATH);
-            Destroy(this.gameObject); //ブロックを消す
+            //Destroy(this.gameObject); //ブロックを消す
+
+
+            FixedUpdate();
         }
     }
 
-    void OnEnable()
+    void FixedUpdate()
     {
-        StartCoroutine(ParticleWorking());
-    }
-
-    IEnumerator ParticleWorking()
-    {
-        var particle = GetComponent<ParticleSystem>();
-
-        yield return new WaitWhile(() => particle.IsAlive(true));
+        rb.AddForce((Physics2D.gravity));
     }
 }

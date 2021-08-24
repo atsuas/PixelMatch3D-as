@@ -4,6 +4,10 @@ public class BookCloseExample : MonoBehaviour
 {
     public new HingeJoint hingeJoint;
 
+    // 単純化のために、スピード調整用係数はVector2からfloatに変更
+    [SerializeField]
+    float RotationSpeed;
+
 
     void Start()
     {
@@ -24,10 +28,6 @@ public class BookCloseExample : MonoBehaviour
         }
         
     }
-
-    // 単純化のために、スピード調整用係数はVector2からfloatに変更
-    [SerializeField]
-    float RotationSpeed;
 
     //deltaはドラッグの方向を取得
     void OnRotate(Vector2 delta)

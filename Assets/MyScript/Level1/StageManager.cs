@@ -54,6 +54,7 @@ public class StageManager : MonoBehaviour
             }
         }
         reloadButton.SetActive(true);
+        
     }
 
     public void LoadStageFromText()

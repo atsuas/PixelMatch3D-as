@@ -530,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openAnimator: {fileID: 2094952995}
   openStopAnimator: {fileID: 324077113}
+  anim: {fileID: 619663188032509540, guid: a538b646c81d84db38aa8909064cda61, type: 3}
   clearImage: {fileID: 2094952993}
   stopImage: {fileID: 324077111}
   okButton: {fileID: 1884284332}

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Fall : MonoBehaviour
 {
-    void OnEnable()
+    Animator anim;
+
+    void Start()
     {
-        StartCoroutine(ParticleWorking());
+        anim = this.gameObject.GetComponent<Animator>();
     }
 
-
-    IEnumerator ParticleWorking()
+    void Update()
     {
-        var particle = GetComponent<ParticleSystem>();
-
-        yield return new WaitWhile(() => particle.IsAlive(true));
-        gameObject.SetActive(false);
+        if (Input.GetMouseButton(0))
+        {
+            anim.SetTrigger("Fall");
+        }
     }
+
 }
