@@ -4,22 +4,42 @@ using UnityEngine;
 
 public class Fall : MonoBehaviour
 {
-    Animator anim;
-    Rigidbody2D rb;
+    //ParticleSystem型を変数psで宣言します。
+    public ParticleSystem ps;
+    //GameObject型で変数objを宣言します。
+    GameObject obj;
+    //マウスでクリックされた位置が格納されます。
+    private Vector3 mousePosition;
+
 
     void Start()
     {
-        anim = this.gameObject.GetComponent<Animator>();
-        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        //FindメソッドでFallingBlockのGameObjectにアクセスして
+        //変数objで参照します。
+        obj = GameObject.Find("FallingBlock");
+        //GetComponentInChildrenで子要素も含めた
+        //ParticleSystemにアクセスして変数psで参照します。
+        ps = obj.GetComponentInChildren<ParticleSystem>();
+        //変数objを非表示にしてパーティクルの再生を止めます。
+        obj.SetActive(false);
+        ps.Stop();
+
     }
+
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        //マウスの左クリックされた時の処理。
+        if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Fall");
-            rb.simulated = true;
+            //マウスカーソルの位置を取得。
+            mousePosition = Input.mousePosition;
+            mousePosition.z = 3f;
+            Instantiate(ps, Camera.main.ScreenToWorldPoint(mousePosition),Quaternion.identity);
+            //クリックされた位置にパーティクルを再生します。
+            obj.SetActive(true);
+            ps.Play();
+
         }
     }
-
 }
