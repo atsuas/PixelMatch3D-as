@@ -530,7 +530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openAnimator: {fileID: 2094952995}
   openStopAnimator: {fileID: 324077113}
-  anim: {fileID: 619663188032509540, guid: a538b646c81d84db38aa8909064cda61, type: 3}
   clearImage: {fileID: 2094952993}
   stopImage: {fileID: 324077111}
   okButton: {fileID: 1884284332}
@@ -538,7 +537,7 @@ MonoBehaviour:
   handOpenSprite: {fileID: 1459174161}
   stageFile1: {fileID: 4900000, guid: 2186f83145f7f49f5bfa950644a85416, type: 3}
   stageFile2: {fileID: 4900000, guid: dc5a977d1fa034a84bcde67a8b84cfa9, type: 3}
-  blockPrefab: {fileID: -5455300117341977687, guid: a538b646c81d84db38aa8909064cda61,
+  blockPrefab: {fileID: 5691629563086471569, guid: 2fd08538db6ad453c8e8f79f398b0f47,
     type: 3}
 --- !u!212 &435833039
 SpriteRenderer:

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Fall : MonoBehaviour
 {
     Animator anim;
+    Rigidbody2D rb;
 
     void Start()
     {
         anim = this.gameObject.GetComponent<Animator>();
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -16,6 +18,7 @@ public class Fall : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             anim.SetTrigger("Fall");
+            rb.simulated = true;
         }
     }
 
