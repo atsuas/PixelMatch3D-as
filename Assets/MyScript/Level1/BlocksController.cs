@@ -66,7 +66,6 @@ public class BlocksController : MonoBehaviour
         else if (type == BlockType.ALIVE)
         {
             SetType(BlockType.DEATH);
-            Destroy(this.gameObject); //ブロックを消す
         }
     }
 }
