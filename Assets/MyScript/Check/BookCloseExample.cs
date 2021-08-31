@@ -28,10 +28,12 @@ public class BookCloseExample : MonoBehaviour
                 hingeJoint.spring = hingeSpring;
                 Debug.Log("90度超えたよ");
             }
-            //else if (hingeJoint.angle >= 170f)
-            //{
-            //    Debug.Log("閉じたよ");
-            //}
+        }
+        if (hingeJoint.angle >= 165f)
+        {
+            //hingeJoint.useSpring = false;
+
+            Debug.Log("閉じたよ");
         }
     }
 
