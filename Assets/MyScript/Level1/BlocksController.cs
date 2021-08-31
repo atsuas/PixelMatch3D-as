@@ -23,6 +23,7 @@ public class BlocksController : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     public void Init(BlockType blockType, Vector3Int position, StageManager stageManager)
@@ -59,13 +60,30 @@ public class BlocksController : MonoBehaviour
 
     public void ClearBlock()
     {
-        if (type == BlockType.DEATH)
-        {
-            SetType(BlockType.ALIVE);
-        }
-        else if (type == BlockType.ALIVE)
-        {
-            SetType(BlockType.DEATH);
-        }
+            if (type == BlockType.DEATH)
+            {
+                SetType(BlockType.ALIVE);
+            }
+            else if (type == BlockType.ALIVE)
+            {
+                SetType(BlockType.DEATH);
+            }
     }
+
+    //void Update()
+    //{
+    //    var mousePos = Input.mousePosition;
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+    //        var h = Physics.RaycastAll(ray, 100.0f);
+    //        if (h.Length > 0)
+    //        {
+    //            if (h[0].collider.tag == "Yellow")
+    //            {
+    //                Destroy(h[0].collider.gameObject);
+    //            }
+    //        }
+    //    }
+    //}
 }

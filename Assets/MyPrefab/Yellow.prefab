@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5455300117341977687}
   - component: {fileID: 1368754166716877039}
   - component: {fileID: 8241334965173442815}
+  - component: {fileID: -9217449411608780252}
   m_Layer: 0
   m_Name: Yellow
   m_TagString: Yellow
@@ -153,3 +154,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-9217449411608780252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5516106292988856968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3f8e533f57e49b0aab5818359fd04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 5516106292988856968}
+  ballSprites:
+  - {fileID: 21300000, guid: 0678bb885e0b948e0a95f19bd4603f67, type: 3}
