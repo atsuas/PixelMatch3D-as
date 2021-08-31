@@ -103,8 +103,8 @@ public class BlocksController : MonoBehaviour
 		if (hit.collider != null)
 		{
 			GameObject hitObj = hit.collider.gameObject;
-			string ballName = hitObj.name;
-			if (ballName.StartsWith("Yellow"))
+			string YellowName = hitObj.name;
+			if (YellowName.StartsWith("Yellow"))
 			{
 				firstYellow = hitObj;
 				lastYellow = hitObj;

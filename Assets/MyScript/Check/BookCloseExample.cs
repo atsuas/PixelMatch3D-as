@@ -23,10 +23,16 @@ public class BookCloseExample : MonoBehaviour
 
             if (hingeJoint.angle >= 90f)
             {
+                JointSpring hingeSpring = hingeJoint.spring;
+                hingeSpring.targetPosition = 170f;
+                hingeJoint.spring = hingeSpring;
                 Debug.Log("90度超えたよ");
             }
+            //else if (hingeJoint.angle >= 170f)
+            //{
+            //    Debug.Log("閉じたよ");
+            //}
         }
-        
     }
 
     //deltaはドラッグの方向を取得
@@ -43,7 +49,7 @@ public class BookCloseExample : MonoBehaviour
 
         // ドラッグ方向をワールド座標系に直す
         // 横ドラッグならカメラのright方向、縦ドラッグならup方向ということなので
-        // deltaのx、yをright、upに掛けて、2つを合成すればいいはず...
+        // deltaのx、yをright、upに掛けて、2つを合成すればいい
         Transform cameraTransform = Camera.main.transform;
         Vector3 deltaWorld = cameraTransform.right * delta.x + cameraTransform.up * delta.y * 0;
 
