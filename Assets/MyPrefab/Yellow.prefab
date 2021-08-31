@@ -100,6 +100,9 @@ MonoBehaviour:
   type: 1
   deathSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   aliveSprite: {fileID: 21300000, guid: 0678bb885e0b948e0a95f19bd4603f67, type: 3}
+  YellowPrefab: {fileID: 5516106292988856968}
+  YellowSprites:
+  - {fileID: 21300000, guid: 0678bb885e0b948e0a95f19bd4603f67, type: 3}
 --- !u!114 &1368754166716877039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,11 +164,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516106292988856968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f3f8e533f57e49b0aab5818359fd04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 5516106292988856968}
-  ballSprites:
+  YellowPrefab: {fileID: 5516106292988856968}
+  YellowSprites:
   - {fileID: 21300000, guid: 0678bb885e0b948e0a95f19bd4603f67, type: 3}

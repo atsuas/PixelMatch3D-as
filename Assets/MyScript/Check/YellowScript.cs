@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class YellowScript : MonoBehaviour
 {
-	public BlockType type;
 	public GameObject YellowPrefab;
 	public Sprite[] YellowSprites;
 	private GameObject firstYellow;
@@ -74,8 +73,8 @@ public class YellowScript : MonoBehaviour
 		{
 			for (int i = 0; i < remove_cnt; i++)
 			{
-				Destroy(removableYellowList[i]);
-			}
+                Destroy(removableYellowList[i]);
+            }
 		}
 		firstYellow = null;
 		lastYellow = null;
