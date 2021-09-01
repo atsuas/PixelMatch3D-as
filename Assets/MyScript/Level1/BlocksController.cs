@@ -137,15 +137,18 @@ public class BlocksController : MonoBehaviour
 	private void OnDragEnd()
 	{
 		int remove_cnt = removableYellowList.Count;
-		if (remove_cnt >= 2)
+		if (remove_cnt >= 1)
 		{
 			for (int i = 0; i < remove_cnt; i++)
 			{
-				//removableYellowList.Contains(removableYellowList[i]);
-				//List<GameObject> result = removableYellowList.FindAll(n => n == YellowPrefab);
-                Destroy(removableYellowList[i]);
+                //Destroy(removableYellowList[i]);
+
+                //removableYellowList.Contains(removableYellowList[i]);
+                //List<GameObject> result = removableYellowList.FindAll(n => n == YellowPrefab);
                 //if (removableYellowList[i] && type == BlockType.DEATH)
                 //{
+                //    removableYellowList[i] = GetComponent<BlocksController>().SetType(BlockType.ALIVE);
+                //    removableYellowList[i].SetActive(true);
                 //    SetType(BlockType.ALIVE);
                 //}
                 //else if (removableYellowList[i] && type == BlockType.ALIVE)
@@ -153,12 +156,11 @@ public class BlocksController : MonoBehaviour
                 //    removableYellowList[i].SetActive(false);
                 //    SetType(BlockType.DEATH);
                 //}
-
             }
-		}
-		firstYellow = null;
-		lastYellow = null;
-	}
+        }
+        firstYellow = null;
+        lastYellow = null;
+    }
 
 	void PushToList(GameObject obj)
 	{
