@@ -142,8 +142,38 @@ public class StageManager : MonoBehaviour
         }
         else
         {
+            IsNotClear();
             //CreateStage();
             //openAnimator.SetTrigger("Open");
+            //Debug.Log("不正解");
+        }
+    }
+
+    public void IsNotClear()
+    {
+        ClearStageText();
+        bool isFailure = true;
+        for (int y = 0; y < blockTable2.GetLength(1); y++)
+        {
+            for (int x = 0; x < blockTable2.GetLength(0); x++)
+            {
+                if (blockTableobj[x, y].type != blockTable2[x, y]) isFailure = true;
+            }
+        }
+
+        if (isFailure)
+        {
+            var clones = GameObject.FindGameObjectsWithTag("Yellow");
+            foreach (var clone in clones)
+            {
+                Destroy(clone);
+            }
+            clearImage.SetActive(true);
+            stopImage.SetActive(true);
+            openAnimator.SetTrigger("OpenAni");
+            openStopAnimator.SetTrigger("OpenAni2");
+            Destroy(okButton.gameObject);
+            Invoke("HandOpenMove", 1.2f);
             Debug.Log("不正解");
         }
     }
