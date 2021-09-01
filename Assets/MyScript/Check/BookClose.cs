@@ -21,7 +21,7 @@ public class BookClose : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            animator.SetTrigger("Open");
+            //animator.SetTrigger("Open");
             Destroy(book1.gameObject, lifeTime);
             Destroy(this.gameObject, destroy);
             handSprite.SetActive(false);
