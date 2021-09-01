@@ -2,6 +2,14 @@
 
 public class BookCloseExample : MonoBehaviour
 {
+    Animator animator;
+    public GameObject book1;
+    public GameObject stage;
+    public GameObject button;
+    public GameObject handSprite;
+    public float lifeTime = 4f;
+    public float destroy = 7f;
+
     public new HingeJoint hingeJoint;
 
     // 単純化のために、スピード調整用係数はVector2からfloatに変更
@@ -12,6 +20,7 @@ public class BookCloseExample : MonoBehaviour
     void Start()
     {
         hingeJoint = GetComponent<HingeJoint>();
+        
     }
 
     void Update()
@@ -32,9 +41,28 @@ public class BookCloseExample : MonoBehaviour
         if (hingeJoint.angle >= 165f)
         {
             //hingeJoint.useSpring = false;
-
+            animator = GetComponent<Animator>();
+            animator.enabled = true;
+            Destroy(book1.gameObject, lifeTime);
+            Destroy(this.gameObject, destroy);
+            handSprite.SetActive(false);
             Debug.Log("閉じたよ");
         }
+    }
+
+    //void Zoom()
+    //{
+    //    animator.SetTrigger("Zoom");
+    //}
+
+    void StageOn()
+    {
+        stage.SetActive(true);
+    }
+
+    void ButtonOn()
+    {
+        button.SetActive(true);
     }
 
     //deltaはドラッグの方向を取得
